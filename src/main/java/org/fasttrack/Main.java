@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.fasttrack.ReadQuotesFromFile.readQuotesFromFile;
+
 public class Main {
     public static void main(String[] args) {
         List<Quote> quotes = readQuotesFromFile("src\\main\\java\\org\\fasttrack\\quotes.txt");
@@ -35,23 +37,6 @@ public class Main {
     }
 
 
-    public static List<Quote> readQuotesFromFile(String filename) {
-        List<Quote> quotes = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            String line;
-            int id = 1;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split("~");
-                if (parts.length == 2) {
-                    Quote quote = new Quote(id, parts[0], parts[1]);
-                    quotes.add(quote);
-                    id++;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return quotes;
-    }
+
 
 }
